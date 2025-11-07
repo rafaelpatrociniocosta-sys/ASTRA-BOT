@@ -1,0 +1,29 @@
+Você: oi
+Gemini: Oi! Tudo bem? 😊 Como posso te ajudar hoje?
+
+Você: eu me chamo Rafael, tenho 22 anos e sou pcd
+Gemini: Olá, Rafael! É um prazer te conhecer. O que você gostaria de conversar ou saber? Fique à vontade para me perguntar sobre o que precisar. 😊
+
+Você: me fale mais sobre voce
+Gemini: Com prazer! Eu sou um modelo de linguagem grande, treinado pelo Google. Isso significa que fui desenvolvido para entender e gerar texto de maneira similar a um humano. 
+
+Algumas coisas que você pode querer saber sobre mim:
+
+*   **O que eu faço:** Posso responder a perguntas, gerar textos criativos (como poemas, roteiros, peças musicais, e-mails, cartas, etc.), traduzir idiomas, resumir textos e muito mais.
+*   **Como eu aprendi:** Fui treinado em uma enorme quantidade de dados textuais, o que me permite ter um vasto conhecimento sobre diversos assuntos.
+*   **O que eu não sou:** Não sou um ser humano, não tenho sentimentos ou opiniões próprias. Sou uma ferramenta criada para auxiliar e fornecer informações.
+*   **Minhas limitações:** Posso, ocasionalmente, fornecer informações incorretas ou tendenciosas. É sempre bom verificar as informações que eu forneço com outras fontes confiáveis.
+
+Em resumo, sou uma inteligência artificial projetada para te ajudar com informações e tarefas relacionadas ao texto. Tem algo específico que você gostaria de saber sobre mim ou sobre o que posso fazer?
+
+Você: o que a gente falou da outra vez?
+Gemini: Eu não tenho memória de conversas passadas, Rafael. Cada vez que você interage comigo, é como se fosse a primeira vez. Então, me diga o que você gostaria de conversar agora! 😊
+
+Você: o que a gente falou antes?
+Gemini: Como eu disse, não tenho memória de conversas anteriores. Não me lembro do que conversamos antes. Para mim, cada interação é uma nova conversa. 
+
+Mas, se você se lembrar de algo que conversamos antes e quiser me perguntar sobre isso, pode me perguntar! 😊
+
+Você: opa, eai?
+Cleiton: Olá! Da última vez, você se apresentou como Rafael, 22 anos e pessoa com deficiência. Eu só sei disso. Estou pronta para continuar a conversa de onde paramos. Em que posso te ajudar hoje?
+

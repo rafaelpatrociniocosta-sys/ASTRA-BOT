@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>✨ Astra.AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+
+<body>
+  <div class="chat-container">
+    <!-- Topo -->
+    <header class="topbar">
+      <div class="brand">
+        <img src="{{ url_for('static', filename='astra_logo.png') }}" alt="Astra.AI" class="logo" />
+        <div class="title">Astra.AI</div>
+      </div>
+    </header>
+
+    <!-- Área do chat -->
+    <main id="chatbox" class="chatbox"></main>
+
+    <!-- Indicador de digitação -->
+    <div id="typing" class="typing hidden">
+      <span></span><span></span><span></span>
+      <div class="typing-label">Astra.AI está digitando...</div>
+    </div>
+
+    <!-- Campo de envio -->
+    <footer class="composer">
+      <textarea id="message" rows="1" placeholder="Digite sua mensagem… (Enter: enviar, Shift+Enter: nova linha)"></textarea>
+
+      <div class="actions-right">
+        <button id="clipBtn" class="btn clip" title="Enviar CSV">📎</button>
+        <input id="file" type="file" accept=".csv,text/csv" hidden />
+        <button id="sendBtn" class="btn send">Enviar</button>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const chatbox = document.getElementById("chatbox");
+    const messageInput = document.getElementById("message");
+    const sendBtn = document.getElementById("sendBtn");
+    const typing = document.getElementById("typing");
+    const fileInput = document.getElementById("file");
+    const clipBtn = document.getElementById("clipBtn");
+
+    function addMessage(sender, text) {
+      const div = document.createElement("div");
+      div.classList.add("msg", sender === "user" ? "user" : "assistant");
+      div.innerText = text;
+      chatbox.appendChild(div);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const userMessage = messageInput.value.trim();
+      if (!userMessage) return;
+
+      addMessage("user", userMessage);
+      messageInput.value = "";
+      typing.classList.remove("hidden");
+
+      try {
+        const res = await fetch("/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ message: userMessage }),
+        });
+        const data = await res.json();
+        const resposta = data.response || "Erro: resposta vazia.";
+        addMessage("assistant", resposta);
+      } catch {
+        addMessage("assistant", "Erro ao conectar ao servidor.");
+      } finally {
+        typing.classList.add("hidden");
+      }
+    }
+
+    sendBtn.addEventListener("click", sendMessage);
+    messageInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
+    });
+
+    clipBtn.addEventListener("click", () => fileInput.click());
+
+    fileInput.addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      addMessage("user", `Enviando arquivo: ${file.name}`);
+      const formData = new FormData();
+      formData.append("file", file);
+
+      typing.classList.remove("hidden");
+      try {
+        const res = await fetch("/upload", { method: "POST", body: formData });
+        const data = await res.json();
+        addMessage("assistant", data.reply || "Erro ao processar o CSV.");
+      } catch {
+        addMessage("assistant", "Erro ao enviar o CSV.");
+      } finally {
+        typing.classList.add("hidden");
+        fileInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
